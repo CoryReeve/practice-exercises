@@ -34,10 +34,25 @@ if (!Math.round10) {
     };
 }
 
-var calculateTipAmount = function calculateTipAmount(billAmount, tipPercent) {
-    return Math.round10((billAmount * (tipPercent / 100)), -2);
+var calculateTipAmount = function calculateTipAmount(amount, tipPercent) {
+    if (tipPercent > 1) {
+        tipPercent = (tipPercent / 100)
+    }
+    return Math.round10((amount * tipPercent), -2);
 };
 
-function calculateTip() {
+function calculateTip(amount, tip) {
+    var tipAmount = calculateTipAmount(amount, tip),
+        totalAmount = amount + tipAmount;
 
+    document.getElementById("bill").innerHTML = "$" + amount;
+    document.getElementById("tip").innerHTML = "$" + tipAmount;
+    document.getElementById("total").innerHTML = "$" + totalAmount;
+}
+
+function tipFromForm() {
+    var billAmount = parseFloat(document.getElementById("billAmount").value),
+        tipAmount = parseFloat(document.getElementById("tipAmount").value);
+
+    calculateTip(billAmount, tipAmount);
 }
