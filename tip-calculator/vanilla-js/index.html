@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>VanillaJS Tip Calculator</title>
+    <style type="text/css">
+        form {
+            width: 400px;
+        }
+    </style>
+    <script src="tip-calculator.js"></script>
+</head>
+<body>
+<form>
+    <fieldset>
+        <legend>Tip Calculator</legend>
+        <label>Bill Amount:</label>
+        <input type="text" id="billAmount"><br>
+        <label>Tip Amount:</label>
+        <input type="text" id="tipAmount">
+        <input type="button" onclick="tipFromForm()" value="Calculate">
+    </fieldset>
+    <br>
+    Bill Amount: <span id="bill"></span><br>
+    Tip Amount: <span id="tip"></span><br>
+    Total Amount: <span id="total"></span>
+</form>
+</body>
+</html>
+
