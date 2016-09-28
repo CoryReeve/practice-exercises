@@ -1,0 +1,43 @@
+<html ng-app="tipCalculator">
+<head>
+    <title>AngularJS Tip Calculator</title>
+    <style type="text/css">
+        form {
+            width: 400px;
+        }
+    </style>
+</head>
+<body ng-controller="TipCtrl as ctrl">
+<form>
+    <fieldset>
+        <legend>Tip Calculator</legend>
+        <label>Bill Amount:</label><br>
+        <input ng-model="ctrl.billAmount" type="text"><br>
+        <label>Tip Amount:</label><br>
+        <input ng-model="ctrl.tip" type="text">
+        <button ng-click="ctrl.calculate()">Calculate</button>
+    </fieldset>
+</form>
+<br>
+Bill Amount: <span ng-cloak>{{ctrl.billAmount | currency}}</span><br>
+Tip Amount: <span ng-cloak>{{ctrl.tipAmount | currency}}</span><br>
+Total Amount: <span ng-cloak>{{ctrl.totalAmount | currency}}</span>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+<script type="text/javascript">
+    angular.module('tipCalculator', [])
+            .controller('TipCtrl', [function () {
+                var self = this;
+                self.billAmount = 0;
+                self.tip = 0;
+
+                self.calculate = function calculate() {
+                    var billAmount = parseFloat(self.billAmount),
+                        tip = parseFloat(self.tip);
+                    self.tipAmount = billAmount * (tip / 100);
+                    self.totalAmount = billAmount + self.tipAmount;
+                };
+            }]);
+</script>
+</body>
+</html>
